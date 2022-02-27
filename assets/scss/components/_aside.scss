@@ -1,0 +1,61 @@
+aside {
+  position: absolute;
+  padding: 20px 0 40px;
+  display: grid;
+  gap: 40px;
+
+  .links {
+    color: $color_white;
+    display: grid;
+
+    a {
+      position: relative;
+      padding: 20px 40px 30px;
+
+      &::before {
+        @extend [class^="icon-"];
+        position: absolute;
+        bottom: 35px;
+        left: 15px;
+      }
+
+      &::after {
+        position: absolute;
+        color: $color_light;
+        font-size: 70%;
+        bottom: 15px;
+        left: 45px;
+      }
+
+      &:nth-child(1) {
+        &::before {
+          content: "\ea1c";
+        }
+
+        &::after {
+          content: "Top 200 words";
+        }
+      }
+
+      &:nth-child(2) {
+        &::before {
+          content: "\ea20";
+        }
+
+        &::after {
+          content: "Top 1000 words";
+        }
+      }
+
+      &:nth-child(3) {
+        &::before {
+          content: "\e926";
+        }
+
+        &::after {
+          content: "Practice your own Text";
+        }
+      }
+    }
+  }
+}

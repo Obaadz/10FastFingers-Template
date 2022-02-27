@@ -1,3 +1,35 @@
 #home {
   @extend %raleway;
+  background-color: $color_blue;
+
+  .landing {
+    position: relative;
+    height: 100vh;
+    background: url("../images/home/home_body_bg.jpg") no-repeat center;
+    background-size: cover;
+    overflow-y: hidden;
+  }
+
+  .landing::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba($color_blue, 0.9);
+  }
+
+  .landing [alt="logo"] {
+    max-width: 145px;
+    margin-left: 25px;
+  }
+
+  aside {
+    background-color: rgba($color_blue, 0.8);
+    padding-bottom: 100%;
+    .links a:hover {
+      background-color: $color_blue_light;
+    }
+  }
 }
