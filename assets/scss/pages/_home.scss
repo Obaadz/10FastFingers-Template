@@ -72,12 +72,7 @@
     }
 
     .btn-box {
-      gap: 20px;
-
-      .btn-green,
-      .btn-orange {
-        position: relative;
-
+      .btn {
         &::after {
           @extend %iconmoon;
           position: absolute;

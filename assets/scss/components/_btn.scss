@@ -1,11 +1,28 @@
 .btn-box {
   display: flex;
   justify-content: center;
+  gap: 20px;
 }
 
 .btn {
+  position: relative;
   color: $color_white;
   font-weight: 600;
   padding: 10px 40px 10px 20px;
   border-radius: 5px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    background-color: $color_white;
+    height: 1px;
+    width: 0;
+    left: 20px;
+    bottom: 10px;
+    transition: width 0.3s;
+  }
+
+  &:hover::before {
+    width: calc(100% - 60px);
+  }
 }
