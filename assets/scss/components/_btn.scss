@@ -19,7 +19,7 @@
     width: 0;
     left: 20px;
     bottom: 10px;
-    transition: width 0.3s;
+    transition: width $transition_time;
   }
 
   &:hover::before {
