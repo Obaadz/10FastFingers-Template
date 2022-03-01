@@ -1,0 +1,11 @@
+.btn-box {
+  display: flex;
+  justify-content: center;
+}
+
+.btn {
+  color: $color_white;
+  font-weight: 600;
+  padding: 10px 40px 10px 20px;
+  border-radius: 5px;
+}

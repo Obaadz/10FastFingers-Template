@@ -1,5 +1,25 @@
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700&display=swap");
 
 %raleway {
   font-family: "Raleway", sans-serif;
+}
+
+%iconmoon {
+  @extend [class^="icon-"];
+}
+
+%icon-play {
+  @extend .icon-play3:before;
+}
+
+%icon-trophy {
+  @extend .icon-trophy:before;
+}
+
+%icon-file-text {
+  @extend .icon-file-text2:before;
+}
+
+%icon-forward {
+  @extend .icon-forward3:before;
 }
