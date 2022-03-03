@@ -2,12 +2,14 @@
   display: flex;
   justify-content: center;
   gap: 20px;
+  flex-wrap: wrap;
 }
 
 .btn {
   position: relative;
   color: $color_white;
   font-weight: 600;
+  text-transform: uppercase;
   padding: 10px 40px 10px 20px;
   border-radius: 5px;
 
@@ -24,5 +26,27 @@
 
   &:hover::before {
     width: calc(100% - 60px);
+  }
+
+  @media (max-width: $media_small) {
+    & {
+      font-size: 80%;
+      padding: 5px 30px 5px 15px;
+    }
+
+    &::before {
+      left: 15px;
+      bottom: 5px;
+    }
+
+    &:hover::before {
+      width: calc(100% - 45px);
+    }
+  }
+
+  @media (max-width: $media_xsmall) {
+    & {
+      width: max-content;
+    }
   }
 }

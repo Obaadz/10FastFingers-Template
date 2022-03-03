@@ -4,6 +4,24 @@ aside {
   display: grid;
   gap: 40px;
 
+  @media (max-width: $media_large) {
+    & {
+      font-size: 2em;
+    }
+
+    img[alt="logo"],
+    .links a::after,
+    .links a span {
+      display: none;
+    }
+  }
+
+  @media (max-width: $media_xsmall) {
+    & {
+      font-size: 1.5em;
+    }
+  }
+
   .links {
     color: $color_white;
     display: grid;
@@ -54,6 +72,24 @@ aside {
 
         &::after {
           content: "Practice your own Text";
+        }
+      }
+
+      @media (max-width: $media_large) {
+        & {
+          padding: 10px 20px;
+        }
+
+        &::before {
+          position: relative;
+          bottom: 0;
+          left: 0;
+        }
+      }
+
+      @media (max-width: $media_xsmall) {
+        & {
+          padding: 5px 10px;
         }
       }
     }
