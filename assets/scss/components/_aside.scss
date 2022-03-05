@@ -30,6 +30,14 @@ aside {
       position: relative;
       padding: 20px 40px 30px;
 
+      &.active {
+        background-color: $color_blue2 !important;
+        color: $color_white !important;
+        &::after {
+          color: $color_white !important;
+        }
+      }
+
       &::before {
         @extend %iconmoon;
         position: absolute;
@@ -41,6 +49,7 @@ aside {
         position: absolute;
         color: $color_light;
         font-size: 70%;
+        font-weight: 400;
         bottom: 15px;
         left: 45px;
       }
