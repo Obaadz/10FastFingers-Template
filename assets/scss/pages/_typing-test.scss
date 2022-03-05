@@ -1,0 +1,21 @@
+#typing-test {
+  @extend %raleway;
+  background-color: #bcdcff;
+  aside {
+    background-color: $color_white;
+    border-bottom-right-radius: 10px;
+
+    .links a {
+      color: $color_black_light;
+      font-weight: 600;
+
+      &:not(.active):hover {
+        background-color: $color_light2;
+      }
+
+      &::after {
+        color: $color_black_light;
+      }
+    }
+  }
+}
