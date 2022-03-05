@@ -1,9 +1,13 @@
 $color_white: #fff;
 $color_light: rgba(255, 255, 255, 0.5);
+$color_light2: rgba(245, 245, 245, 75%);
 $color_green: #aad23b;
 $color_orange: #fdb714;
 $color_blue: #102531;
+$color_blue2: #428bca;
 $color_blue_light: rgba(114, 255, 255, 0.1);
+$color_black: #000;
+$color_black_light: #555;
 
 [class*="green"] {
   background-color: $color_green;
