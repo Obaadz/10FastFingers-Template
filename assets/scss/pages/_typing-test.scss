@@ -1,8 +1,13 @@
 #typing-test {
   @extend %raleway;
   background-color: #bcdcff;
+  height: 100vh;
+  display: flex;
   aside {
+    height: max-content;
+    position: static;
     background-color: $color_white;
+    padding-top: 50px;
     border-bottom-right-radius: 10px;
 
     .links a {
@@ -17,5 +22,11 @@
         color: $color_black_light;
       }
     }
+  }
+
+  main {
+    flex: 1;
+    align-self: center;
+    margin: -200px 50px 0;
   }
 }

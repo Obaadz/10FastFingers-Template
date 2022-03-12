@@ -1,0 +1,57 @@
+#game {
+  max-width: 800px;
+  #words-display-box {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 5px;
+    max-width: 61ch;
+    max-height: 90px;
+    background-color: $color_white;
+    border: 2px solid $color_light2;
+    border-radius: 5px;
+    padding: 10px 10px;
+    font-weight: 500;
+    font-size: 1.4em;
+    overflow: hidden;
+
+    span {
+      padding: 2px 4px;
+    }
+
+    .wrong {
+      color: #ff0000;
+    }
+    .correct {
+      color: #008000;
+    }
+    .highlight {
+      background-color: #dddcdc !important;
+    }
+    .highlight-wrong {
+      background-color: #ff0000 !important;
+    }
+  }
+
+  #words-input-box {
+    margin-top: 20px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background-color: #a7c8e7;
+
+    #words-input-field {
+      width: 80%;
+      padding: 5px 10px;
+    }
+
+    #timer {
+      color: $color_white;
+      background-color: #3c4d5c;
+      padding: 5px;
+      border-radius: 5px;
+      font-size: 1.4em;
+    }
+  }
+}
