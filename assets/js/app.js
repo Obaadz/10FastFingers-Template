@@ -1,11 +1,10 @@
 const WORDS_BOX = document.getElementById("words-display-box");
 const INPUT_FIELD = document.getElementById("words-input-field");
 const TIMER = document.getElementById("timer");
-const DEFAULT_SHUFFLE = 3;
+const DEFAULT_SHUFFLE = 3,
+  DEFAULT_TIME = 59;
 
-let current,
-  WPM = 0,
-  wordsArray;
+let isPlaying, time, current, WPM, wordsArray;
 {
   wordsArray =
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam similique non quod numquam, adipisci ut perferendis suscipit beatae laborum dignissimos repudiandae debitis esse inventore hic molestias repellendus dolore assumenda blanditiis. Quia reprehenderit aspernatur, dignissimos aut, eos illo minus aliquid deserunt fugiat similique quae. Consequuntur distinctio reprehenderit. Consequuntur, fugit eveniet."
@@ -49,6 +48,8 @@ function reset, call only when user press reset button and when page loaded
 function restartGame() {
   TIMER.textContent = "1:00";
   WPM = current = 0;
+  time = DEFAULT_TIME;
+  isPlaying = false;
 
   if (WORDS_BOX.classList.contains("show-WPM")) {
     WORDS_BOX.classList.remove("show-WPM");
@@ -61,4 +62,34 @@ function restartGame() {
   spanWordsArray[current].classList.add("highlight");
   INPUT_FIELD.focus();
 }
-restartGame();
+
+// a function that start/stop timer, note that countdown will be cleared when time equal 0
+function startCountDown() {
+  let intervalID = setInterval(() => {
+    if (time == 0) {
+      clearInterval(intervalID);
+      endGame();
+    }
+
+    TIMER.textContent = `0:${time--}`;
+  }, 1000);
+}
+
+function endGame() {
+  isPlaying = false;
+  WORDS_BOX.classList.add("showWPM");
+}
+
+INPUT_FIELD.addEventListener("keydown", (key) => {
+  if (key.code == "Space" && INPUT_FIELD.value == "")
+    return key.preventDefault();
+
+  if (!isPlaying) {
+    isPlaying = true;
+    startCountDown();
+  }
+});
+
+window.onload = () => {
+  restartGame(); // Preparing game to be ready to start.
+};
