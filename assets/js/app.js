@@ -80,14 +80,52 @@ function endGame() {
   WORDS_BOX.classList.add("showWPM");
 }
 
-INPUT_FIELD.addEventListener("keydown", (key) => {
-  if (key.code == "Space" && INPUT_FIELD.value == "")
-    return key.preventDefault();
+function isWordCorrect(inputValue) {
+  return inputValue == spanWordsArray[current].textContent;
+}
+
+function isWordCorrect(inputValue, length) {
+  return inputValue == spanWordsArray[current].textContent.substr(0, length);
+}
+
+function correctWord(currentSpan) {
+  currentSpan.classList.add("correct");
+}
+
+function wrongWord(currentSpan) {
+  currentSpan.classList.add("wrong");
+}
+
+INPUT_FIELD.addEventListener("keydown", (e) => {
+  if (e.code == "Space" && INPUT_FIELD.value == "") return e.preventDefault();
 
   if (!isPlaying) {
     isPlaying = true;
     startCountDown();
   }
+
+  if (e.code == "Space") {
+    e.preventDefault();
+
+    spanWordsArray[current].classList.remove("highlight");
+    spanWordsArray[current].classList.remove("highlight-wrong");
+
+    if (isWordCorrect(INPUT_FIELD.value)) correctWord(spanWordsArray[current]);
+    else wrongWord(spanWordsArray[current]);
+
+    spanWordsArray[++current].classList.add("highlight");
+    INPUT_FIELD.value = "";
+
+    return;
+  }
+});
+
+INPUT_FIELD.addEventListener("keyup", (e) => {
+  if (e.code == "Space") return;
+
+  if (isWordCorrect(INPUT_FIELD.value, INPUT_FIELD.value.length)) {
+    spanWordsArray[current].classList.remove("highlight-wrong");
+  } else spanWordsArray[current].classList.add("highlight-wrong");
 });
 
 window.onload = () => {
