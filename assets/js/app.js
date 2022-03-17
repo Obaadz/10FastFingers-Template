@@ -60,6 +60,10 @@ function restartGame() {
   appendWords(spanWordsArray);
 
   spanWordsArray[current].classList.add("highlight");
+
+  // if (INPUT_FIELD.hasAttribute("disabled"))
+  INPUT_FIELD.removeAttribute("disabled");
+
   INPUT_FIELD.focus();
 }
 
@@ -78,6 +82,7 @@ function startCountDown() {
 function endGame() {
   isPlaying = false;
   WORDS_BOX.classList.add("showWPM");
+  INPUT_FIELD.toggleAttribute("disabled"); // game is finished so this field must be disabled.
 }
 
 function isWordCorrect(inputValue) {
@@ -115,6 +120,13 @@ INPUT_FIELD.addEventListener("keydown", (e) => {
 
     spanWordsArray[++current].classList.add("highlight");
     INPUT_FIELD.value = "";
+
+    // remove all words that done before current word every 6 words
+    if (current % 6 == 0) {
+      for (let i = current - 6; i < current; i++) {
+        spanWordsArray[i].remove();
+      }
+    }
 
     return;
   }
