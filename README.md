@@ -1,4 +1,6 @@
 # 10FastFingers-Template
-html &amp; scss &amp; javascript template - responsive design.
+html &amp; scss &amp; javascript template.
 
-trying to clone  https://10fastfingers.com site.
+link: https://obaadz.github.io/10FastFingers-Template
+
+original site: https://10fastfingers.com
