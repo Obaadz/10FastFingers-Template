@@ -4,21 +4,13 @@ const TIMER = document.getElementById("timer");
 const DEFAULT_SHUFFLE = 3,
   DEFAULT_TIME = 59;
 
-let isPlaying, time, current, WPM, wordsArray;
+let isPlaying, time, current, WPM, wordsArray, spanWordsArray;
 {
   wordsArray =
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam similique non quod numquam, adipisci ut perferendis suscipit beatae laborum dignissimos repudiandae debitis esse inventore hic molestias repellendus dolore assumenda blanditiis. Quia reprehenderit aspernatur, dignissimos aut, eos illo minus aliquid deserunt fugiat similique quae. Consequuntur distinctio reprehenderit. Consequuntur, fugit eveniet."
-      .toLowerCase()
-      .replaceAll(",", "")
-      .replaceAll(".", "")
-      .split(" ");
+    "than|find|year|those|made|head|three|life|picture|car|to|what|still|turn|never|year|had|are|plant|together|learn|people|set|America|cut|use|while|river|as|such|where|once|form|almost|than|each|is|open|talk|song|quite|small|what|page|his|because|boy|run|also|get|any|went|came|on|call|work|try|just|while|little|list|country|side|also|the|began|up|stop|write|girl|watch|car|had|must|into|took|but|give|Indian|very|question|with|father|your|which|play|where|it's|world|study|until|was|think|head|soon|children|like|may|away|up|write|were|us|next|then|him|first|out|make|mile|house|earth|often|between|but|set|will|high|put|mean|for|next|walk|because|second|young|help|even|well|how|his|hear|talk|don't|may|our|food|at|tell|not|follow|miss|other|also|so|no|learn|hard|show|for|when|great|this|time|come|part|really|sentence|was|together|once|many|change|do|it|men|water|white|thing|seem|set|answer|from|find|here|world|must|children|to|one|far|with|children|got|until|country|number|carry|get|something|time|end|sentence|small|girl|try|night|call|all|say|America|out|great|take|them|watch|if|them|story|too|move|of|mean|last|carry|could|point|always|letter|off|our|place|turn|under|hand|river|that|most|he|home|by|cut|good|him|if|are|more|light|mile|Indian|being|land|book|now|most|before|well|really|in|start|group|letter|second|new|you|earth|question|this|different|want|she|run|sometimes|begin|below|above|first|has|different|school|near|new|above|who|cut|under|man|took|face|old|and|like|follow|grow|line|air|your|leave|play|white|would|paper|turn|we|leave|page|miss|is|another|has|all|go|she|near|said|part|eye|picture|left|grow|an|their|made|like|around|or|walk|its|idea|animal|great|open|head|idea|kind|own|oil|kind|spell|much|quickly|write|with|tell|would|will|soon|he|begin|about|mother|state|life|change|that|such|example|country|family|your|found|well|for|an|saw|state|don't|being|down|found|large|went|some|sound|does|must|father|her|than|see|four|why|night|until|form|after|should|know".split(
+      "|"
+    );
 }
-
-let spanWordsArray = wordsArray.map((e) => {
-  let span = document.createElement("span");
-  span.append(e);
-  return span;
-});
 
 /* inputs: spanWordsArray, shuffle times
    outputs: shuffledArray which is the same array in inputs */
@@ -56,13 +48,19 @@ function restartGame() {
     WORDS_BOX.textContent = "";
   }
 
+  spanWordsArray = wordsArray.map((e) => {
+    let span = document.createElement("span");
+    span.append(e);
+    return span;
+  });
+
   shuffleWords(spanWordsArray);
   appendWords(spanWordsArray);
 
   spanWordsArray[current].classList.add("highlight");
 
-  // if (INPUT_FIELD.hasAttribute("disabled"))
-  INPUT_FIELD.removeAttribute("disabled");
+  if (INPUT_FIELD.hasAttribute("disabled"))
+    INPUT_FIELD.removeAttribute("disabled");
 
   INPUT_FIELD.focus();
 }
@@ -80,8 +78,12 @@ function startCountDown() {
 }
 
 function endGame() {
-  isPlaying = false;
-  WORDS_BOX.classList.add("showWPM");
+  setTimeout(() => {
+    isPlaying = false;
+  }, 1000);
+  WORDS_BOX.setAttribute("wpm", `WPM: ${WPM} - Press R to restart`);
+  WORDS_BOX.classList.add("show-WPM");
+  INPUT_FIELD.value = "";
   INPUT_FIELD.toggleAttribute("disabled"); // game is finished so this field must be disabled.
 }
 
@@ -95,6 +97,7 @@ function isWordCorrect(inputValue, length) {
 
 function correctWord(currentSpan) {
   currentSpan.classList.add("correct");
+  WPM++;
 }
 
 function wrongWord(currentSpan) {
@@ -138,6 +141,10 @@ INPUT_FIELD.addEventListener("keyup", (e) => {
   if (isWordCorrect(INPUT_FIELD.value, INPUT_FIELD.value.length)) {
     spanWordsArray[current].classList.remove("highlight-wrong");
   } else spanWordsArray[current].classList.add("highlight-wrong");
+});
+
+document.addEventListener("keyup", (e) => {
+  if (!isPlaying && e.code == "KeyR") restartGame();
 });
 
 window.onload = () => {

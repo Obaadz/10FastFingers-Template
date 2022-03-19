@@ -1,6 +1,7 @@
 #game {
   max-width: 800px;
   #words-display-box {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     column-gap: 5px;
@@ -13,6 +14,7 @@
     font-weight: 500;
     font-size: 1.4em;
     overflow: hidden;
+    user-select: none;
 
     span {
       padding: 2px 4px;
@@ -29,6 +31,29 @@
     }
     .highlight-wrong {
       background-color: #ff0000 !important;
+    }
+
+    &.show-WPM,
+    &.show-WPM::before {
+      background-color: $color_blue2;
+    }
+
+    &.show-WPM::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+    }
+
+    &.show-WPM::after {
+      content: attr(WPM);
+      color: #fff;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
     }
   }
 
